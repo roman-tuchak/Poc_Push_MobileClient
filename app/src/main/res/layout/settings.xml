@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/settings"
+    tools:context=".SettingsActivity"
+    android:weightSum="1"
+    android:background="#ff7a7a7a">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.00"
+        android:background="@android:color/darker_gray"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/deviceIdText"
+            android:id="@+id/deviceIdText"
+            android:layout_weight="0.25"
+            android:textAlignment="center"
+            android:layout_marginLeft="0dp"
+            android:background="@android:color/darker_gray"
+            android:gravity="center|left"
+            android:paddingLeft="10dp" />
+
+        <Button
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:text="@string/copyIdButton"
+            android:id="@+id/copyIdButton"
+            android:clickable="false"
+            android:background="#ff7a7a7a"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="0.55"
+            android:layout_marginRight="10dp"
+            android:textColor="@android:color/background_light" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/notifGroup"
+        android:id="@+id/notifGroup"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@android:color/background_light" />
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/paymentSwitch"
+        android:id="@+id/switchForPayment"
+        android:checked="true"
+        android:background="@android:color/darker_gray"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:singleLine="true"
+        android:enabled="true" />
+
+    <Switch
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/predictSwitch"
+        android:id="@+id/switchForPredict"
+        android:checked="false"
+        android:background="@android:color/darker_gray"
+        android:layout_gravity="center_horizontal"
+        android:padding="10dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:singleLine="true"
+        android:enabled="false" />
+</LinearLayout>

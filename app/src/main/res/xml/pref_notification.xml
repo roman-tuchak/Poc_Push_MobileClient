@@ -1,0 +1,17 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:fragment="com.pushclient.app.SettingsActivity$NotificationPreferenceFragment"
+        android:id="@+id/payment_switch"
+        android:title="@string/paymentSwitch"
+        android:defaultValue="true"
+        android:enabled="true"/>
+
+    <SwitchPreference
+        android:fragment="com.pushclient.app.SettingsActivity$NotificationPreferenceFragment"
+        android:id="@+id/predict_switch"
+        android:title="@string/predictSwitch"
+        android:defaultValue="true"
+        android:enabled="true"/>
+
+</PreferenceScreen>

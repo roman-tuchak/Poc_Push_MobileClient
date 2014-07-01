@@ -113,9 +113,15 @@ public class MessageProvider extends ContentProvider {
 
     @Override
     public String getType(Uri uri) {
-        // TODO: Implement this to handle requests for the MIME type of the data
-        // at the given URI.
-        throw new UnsupportedOperationException("Not yet implemented");
+        switch (sUriMatcher.match(uri)) {
+            case INCOMING_MESSAGE_COLLECTION_URI_INDICATOR:
+                return MessageTableMetaData.CONTENT_TYPE;
+            case INCOMING_SINGLE_MESSAGE_URI_INDICATOR:
+                return MessageTableMetaData.CONTENT_ITEM_TYPE;
+            default:
+                throw new IllegalArgumentException("Unknown URI " + uri);
+
+        }
     }
 
     @Override
@@ -142,11 +148,11 @@ public class MessageProvider extends ContentProvider {
         if (!values.containsKey(MessageTableMetaData.INVOICE_AMOUNT))
             values.put(MessageTableMetaData.INVOICE_AMOUNT, "Unknown amount");
         if (!values.containsKey(MessageTableMetaData.INVOICE_SUBMIT))
-            values.put(MessageTableMetaData.INVOICE_SUBMIT, "Unknown submit date");
+            values.put(MessageTableMetaData.INVOICE_SUBMIT, "Unknown date");
         if (!values.containsKey(MessageTableMetaData.INVOICE_COMPLETE))
-            values.put(MessageTableMetaData.INVOICE_COMPLETE, "Unknown complete date");
+            values.put(MessageTableMetaData.INVOICE_COMPLETE, "Unknown date");
         if (!values.containsKey(MessageTableMetaData.INVOICE_PREDICT))
-            values.put(MessageTableMetaData.INVOICE_PREDICT, "Unknown predicted date");
+            values.put(MessageTableMetaData.INVOICE_PREDICT, "Unknown date");
 
         SQLiteDatabase db = mOpenHelper.getWritableDatabase();
         long rowId = db.insert(MessageTableMetaData.TABLE_NAME,

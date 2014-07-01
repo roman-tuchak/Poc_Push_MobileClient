@@ -18,6 +18,8 @@ public class MessageProviderMetaData {
 
         public static final String TABLE_NAME = "messages";
         public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/messages");
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.pushclient.message";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.pushclient.message";
         public static final String DEFAULT_SORT_ORDER = "modified DESC";
         public static final String INVOICE_NAME = "name";
         public static final String INVOICE_AMOUNT = "amount";

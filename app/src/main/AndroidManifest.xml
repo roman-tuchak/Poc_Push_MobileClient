@@ -50,6 +50,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <!--
           WakefulBroadcastReceiver that will receive intents from GCM
           services and hand them to the custom IntentService.
@@ -71,17 +72,25 @@
 
         <service android:name=".GcmIntentService" />
 
-        <!-- <activity -->
-        <!-- android:name=".MainActivity" -->
-        <!-- android:label="@string/title_activity_main_activity" > -->
-        <!-- </activity> -->
-
         <provider
             android:name=".MessageProvider"
             android:authorities="com.pushclient.app.MessageProvider"
             android:enabled="true"
             android:exported="false" >
         </provider>
-    </application>
 
+        <activity
+            android:name=".MessageInfoActivity"
+            android:label="@string/app_name" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.pushclient.app.MainActivity" >
+            </meta-data>
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+    </application>
 </manifest>

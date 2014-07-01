@@ -3,8 +3,7 @@
     <Preference
         android:title="@string/copy_device_id"
         android:summary="@string/copy_to_clipboard"
-        android:key="copyIdButton"
-        android:fragment="com.pushclient.app.SettingsActivity$GeneralPreferenceFragment">
+        android:key="copy_id">
     </Preference>
 
 </PreferenceScreen>

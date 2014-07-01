@@ -283,6 +283,5 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
      */
     private void sendRegistrationIdToBackend() {
         // Your implementation here.
-        System.out.println(msgId);
     }
 }

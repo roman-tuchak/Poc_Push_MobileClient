@@ -13,9 +13,9 @@ import android.util.Log;
 
 public class SettingsActivity extends PreferenceActivity implements Preference.OnPreferenceClickListener {
 
-    private static String COPY_DEV_ID_KEY = "device_id";
-    static String INVOICE_SWITCH_KEY = "invoice_switch";
-    static String PREDICT_SWITCH_KEY = "predict_switch";
+    private static final String COPY_DEV_ID_KEY = "device_id";
+    static final String INVOICE_SWITCH_KEY = "invoice_switch";
+    static final String PREDICT_SWITCH_KEY = "predict_switch";
 
 
     @Override

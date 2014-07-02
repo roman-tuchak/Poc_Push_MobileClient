@@ -3,7 +3,7 @@
     <Preference
         android:title="@string/copy_device_id"
         android:summary="@string/copy_to_clipboard"
-        android:key="copy_id">
+        android:key="@string/copy_dev_id_key">
     </Preference>
 
 </PreferenceScreen>

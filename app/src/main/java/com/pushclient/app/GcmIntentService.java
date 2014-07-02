@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.text.style.RelativeSizeSpan;
 import android.util.Log;
@@ -33,15 +34,16 @@ import static com.pushclient.app.MessageProviderMetaData.*;
 public class GcmIntentService extends IntentService {
     public static final int NOTIFICATION_ID = 1;
     private NotificationManager mNotificationManager;
-    NotificationCompat.Builder builder;
+
 
     public GcmIntentService() {
         super("GcmIntentService");
     }
-    public static final String TAG = "PaymodePushClient";
+
 
     @Override
     protected void onHandleIntent(Intent intent) {
+
         Bundle extras = intent.getExtras();
         GoogleCloudMessaging gcm = GoogleCloudMessaging.getInstance(this);
         // The getMessageType() intent parameter must be the intent you received
@@ -78,7 +80,7 @@ public class GcmIntentService extends IntentService {
                         }
                         getContentResolver().insert(MessageTableMetaData.CONTENT_URI, cv);
                         sendNotification("Invoice: " + invoice.getString("invoiceName") + " received");
-                        Log.i(TAG, "Received: " + extras.toString());
+                        Log.v(MainActivity.TAG, "Received: " + extras.toString());
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

@@ -1,17 +1,24 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <SwitchPreference
-        android:fragment="com.pushclient.app.SettingsActivity$NotificationPreferenceFragment"
-        android:id="@+id/payment_switch"
-        android:title="@string/paymentSwitch"
+        android:key="@string/invoice_switch_key"
+        android:id="@+id/invoice_switch"
+        android:title="@string/invoiceSwitch"
         android:defaultValue="true"
-        android:enabled="true"/>
+        android:enabled="true"
+        android:switchTextOn="On"
+        android:switchTextOff="Off"
+        android:textSize="@dimen/switch_text_width"/>
 
     <SwitchPreference
-        android:fragment="com.pushclient.app.SettingsActivity$NotificationPreferenceFragment"
+        android:dependency="@string/invoice_switch_key"
+        android:key="@string/predict_switch_key"
         android:id="@+id/predict_switch"
         android:title="@string/predictSwitch"
         android:defaultValue="true"
-        android:enabled="true"/>
+        android:enabled="true"
+        android:switchTextOn="On"
+        android:switchTextOff="Off"
+        android:textSize="@dimen/switch_text_width"/>
 
 </PreferenceScreen>

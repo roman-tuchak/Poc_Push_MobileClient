@@ -24,7 +24,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import static android.widget.AdapterView.*;
 
@@ -40,18 +39,17 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
      * Substitute you own sender ID here. This is the project number you got
      * from the API Console, as described in "Getting Started."
      */
-    String SENDER_ID = "796493494889";
+    private String SENDER_ID = "796493494889";
 
     /**
      * Tag used on log messages.
      */
     static final String TAG = "PaymodePushClient";
 
-    GoogleCloudMessaging gcm;
-    AtomicInteger msgId = new AtomicInteger();
-    Context context;
-    String regid;
-    Cursor cursor /*= null*/;
+    private GoogleCloudMessaging gcm;
+    private Context context;
+    private String regId;
+    private Cursor cursor;
 
 
     @Override
@@ -64,9 +62,9 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
         // Check device for Play Services APK. If check succeeds, proceed with GCM registration.
         if (checkPlayServices()) {
             gcm = GoogleCloudMessaging.getInstance(this);
-            regid = getRegistrationId(context);
+            regId = getRegistrationId(context);
 
-            if (regid.isEmpty()) {
+            if (regId.isEmpty()) {
                 registerInBackground();
             }
         } else {
@@ -171,12 +169,12 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
      * @param regId registration ID
      */
     private void storeRegistrationId(Context context, String regId) {
-        final SharedPreferences prefs = getGcmPreferences(context);
+        final SharedPreferences prefs = getGcmPreferences();
         int appVersion = getAppVersion(context);
         Log.i(TAG, "Saving regId on app version " + appVersion);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(PROPERTY_REG_ID, regId);
-        Log.i(TAG, "Regitsration ID: " + regId);
+        Log.v(TAG, "Regitsration ID: " + regId);
         editor.putInt(PROPERTY_APP_VERSION, appVersion);
         editor.commit();
     }
@@ -190,7 +188,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
      *         registration ID.
      */
     private String getRegistrationId(Context context) {
-        final SharedPreferences prefs = getGcmPreferences(context);
+        final SharedPreferences prefs = getGcmPreferences();
         String registrationId = prefs.getString(PROPERTY_REG_ID, "");
         if (registrationId.isEmpty()) {
             Log.i(TAG, "Registration not found.");
@@ -223,8 +221,8 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
                     if (gcm == null) {
                         gcm = GoogleCloudMessaging.getInstance(context);
                     }
-                    regid = gcm.register(SENDER_ID);
-                    msg = "Device registered, registration ID = " + regid;
+                    regId = gcm.register(SENDER_ID);
+                    msg = "Device registered, registration ID = " + regId;
 
                     // You should send the registration ID to your server over HTTP, so it
                     // can use GCM/HTTP or CCS to send messages to your app.
@@ -235,7 +233,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
                     // 'from' address in the message.
 
                     // Persist the regID - no need to register again.
-                    storeRegistrationId(context, regid);
+                    storeRegistrationId(context, regId);
                 } catch (IOException ex) {
                     msg = "Error regitsration:" + ex.getMessage();
                     // If there is an error, don't just keep trying to register.
@@ -247,8 +245,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
 
             @Override
             protected void onPostExecute(String msg) {
-                System.out.println(msg);
-//                mDisplay.append(msg + "\n");
+                Log.i(TAG, msg);
             }
         }.execute(null, null, null);
     }
@@ -270,7 +267,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
     /**
      * @return Application's {@code SharedPreferences}.
      */
-    private SharedPreferences getGcmPreferences(Context context) {
+    private SharedPreferences getGcmPreferences() {
         // This sample app persists the registration ID in shared preferences, but
         // how you store the regID in your app is up to you.
         return getSharedPreferences(MainActivity.class.getSimpleName(),

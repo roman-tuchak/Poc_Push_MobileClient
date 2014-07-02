@@ -40,10 +40,10 @@ public class GcmBroadcastReceiver extends WakefulBroadcastReceiver {
 
     // Check Preferences for Invoice notifications
     private boolean isNotifyInvoice(Context context) {
-        boolean paymentFlag = PreferenceManager.getDefaultSharedPreferences(context)
+        boolean invoiceFlag = PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(SettingsActivity.INVOICE_SWITCH_KEY, true);
-        Log.v(MainActivity.TAG, "Invoices switch is: " + paymentFlag);
-        return paymentFlag;
+        Log.v(MainActivity.TAG, "Invoices switch is: " + invoiceFlag);
+        return invoiceFlag;
     }
 
     /**
